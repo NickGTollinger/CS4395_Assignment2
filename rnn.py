@@ -31,16 +31,16 @@ class RNN(nn.Module):
 
     def forward(self, inputs):
         # [to fill] obtain hidden layer representation (https://pytorch.org/docs/stable/generated/torch.nn.RNN.html)
-        output, _ = self.rnn(inputs)  # output: (seq_len, batch=1, hidden_dim)
+        output, _ = self.rnn(inputs)  # Fetching our output layer to prepare for a summation
 
         # [to fill] sum over output 
-        summed_output = torch.sum(output, dim=0)  # shape: (1, hidden_dim)
+        summed_output = torch.sum(output, dim=0)  # Sum together the hidden states over each timestep to get our unweighted output layer representation
 
         # [to fill] obtain output layer representations
-        logits = self.W(summed_output)  # shape: (1, output_dim)
+        logits = self.W(summed_output)  # Apply the weights to our output representation
 
         # [to fill] obtain probability dist.
-        predicted_vector = self.softmax(logits)  # shape: (1, output_dim)
+        predicted_vector = self.softmax(logits)  # Softmaxing our output layer reprsentation gets us all of our probabilities
         return predicted_vector
 
 
